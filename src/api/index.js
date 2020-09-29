@@ -2,10 +2,10 @@ import login from "./login.js";
 import shop from "./shop.js";
 
 
-import mserver from "../request/getrequest.js";
-mserver.parseRouter('login',login);
-mserver.parseRouter('shop',shop);
+import myserver from "../request/getrequest.js";
+myserver.parseRouter('login',login);
+myserver.parseRouter('shop',shop);
 
 
-export default mserver;
+export default myserver;
 

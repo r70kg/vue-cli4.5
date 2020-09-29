@@ -1,7 +1,8 @@
-import mserver from "../api/index.js";
-import server from "./serve.js";
+import server from "./server.js";
 import qs from "qs";
-import axios from "axios";
+
+console.log(server)
+
 // 并行请求
 // 阻止同一个并行请求  或者是  改变单一请求的状态 ==== 赋值每个请求属性 state 
 function myserver(){
@@ -9,7 +10,7 @@ function myserver(){
     this.nowhandle = {};
 }
 
-mserver.prototype.v = function (ob){
+myserver.prototype.v = function (ob){
     this.nowhandle = ob;
     return this;
 }
@@ -26,7 +27,7 @@ myserver.prototype.parseRouter = function (name,urlOb){
 }
 
 
-mserver.prototype.sendMes = function (moduleName,name,url,config){
+myserver.prototype.sendMes = function (moduleName,name,url,config){
    var config = config || {};
    var type = config.type || 'get';
    var data = config.data || {};

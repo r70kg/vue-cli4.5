@@ -6,7 +6,7 @@ const devProxy = [
 ] // 代理
 
 
-let target = process.env.VUE_APP_HOST_URL
+let target = process.env.VUE_APP_BASE_API
 
 // 生成代理配置对象
 

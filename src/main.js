@@ -1,10 +1,11 @@
 import Vue from 'vue'
-import './plugins/axios'
+// import './plugins/axios'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
-Vue.config.productionTip = false
+// 非生产环境不生产提示信息
+Vue.config.productionTip = process.env !== 'production'
 
 new Vue({
   router,
