@@ -2,7 +2,7 @@
  * Created by Dell on 2020/9/24.
  */
 const devProxy = [
-    '/user'
+    '/business'
 ] // 代理
 
 
@@ -27,10 +27,10 @@ devProxy.forEach((value) => {
 })
 
 
+console.log(proxyObj)
 
 
-
- module.exports = {
+module.exports = {
      devServer: {
          proxy: proxyObj,  // 配置代理
      },

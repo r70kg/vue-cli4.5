@@ -3,7 +3,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-
+// 数据请求
+import myserver from './api/index'
+Vue.prototype.mserver = myserver
 // 非生产环境不生产提示信息
 Vue.config.productionTip = process.env !== 'production'
 
