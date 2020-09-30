@@ -87,7 +87,7 @@ myserver.prototype.sendMes = function (moduleName,name,url,config){
    }
    // 为每个请求绑定状态标识，防止阻碍并发请求 实现防止重复提交
    if(self[moduleName][name].state == 'ready'){
-      self[moduleName][name].state == 'pending'
+      self[moduleName][name].state = 'pending'
       state[type]();
    }
 }

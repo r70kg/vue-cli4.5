@@ -1,5 +1,6 @@
 <template>
-  <div class="home">
+  <div class="home" @click="send">
+    发送
   </div>
 </template>
 
@@ -14,15 +15,20 @@ export default {
       mgs:'Home'
     }
   },
+  methods:{
+    send(){
+      this.msv.v(this).user.getUserInfo({
+        type:'post',
+        data:{},
+        bindName:''
+      })
+    }
+  },
   components: {
     HelloWorld
   },
   mounted(){
-    this.mserver.v(this).user.getUserInfo({
-      type:'post',
-      data:{},
-      bindName:''
-    })
+
   }
 }
 </script>
