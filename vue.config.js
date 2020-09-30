@@ -2,11 +2,11 @@
  * Created by Dell on 2020/9/24.
  */
 const devProxy = [
+    '/userInfomation',
     '/business'
 ] // 代理
 
-
-let target = process.env.VUE_APP_BASE_API
+let target = process.env.VUE_APP_BASE_API;
 
 // 生成代理配置对象
 

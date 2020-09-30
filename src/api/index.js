@@ -4,6 +4,7 @@ import user from "./user";
 
 
 import myserver from "../request/getrequest.js";
+
 myserver.parseRouter('login',login);
 myserver.parseRouter('shop',shop);
 myserver.parseRouter('user',user);

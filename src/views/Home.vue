@@ -12,15 +12,21 @@ export default {
   name: 'Home',
   data(){
     return {
-      mgs:'Home'
+      mgs:'Home',
+      testObj:{}
     }
   },
   methods:{
     send(){
-      this.msv.v(this).user.getUserInfo({
+      this.msv.v(this).login.logIn({
         type:'post',
-        data:{},
-        bindName:''
+        data:{
+          username: "140212199403171823",//指导老师
+          password: "000000",
+          project: "shanghai",
+          imei:123
+        },
+        bindName:'testObj'
       })
     }
   },
@@ -28,7 +34,6 @@ export default {
     HelloWorld
   },
   mounted(){
-
   }
 }
 </script>
