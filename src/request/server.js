@@ -47,6 +47,12 @@ server.interceptors.request.use(
            ['X-Token'] is a custom headers key
            please modify it according to the actual situation
         */
+        //  根据项目需求确定参数
+        config.headers = {
+            accessToken:  store.state.token || '',
+            imei: '',
+            project: ''
+        }
         if (store.getters.token) {
 
             config.headers['X-Token'] = getToken()

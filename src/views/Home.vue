@@ -18,14 +18,18 @@ export default {
   },
   methods:{
     send(){
-      this.msv.v(this).login.logIn({
+      let params = {
+        username: "140212199403171823",//指导老师
+        password: "000000",
+        project: "shanghai",
+        imei:123,
+        humanId:3
+      }
+      console.log(this)
+
+      this.msv.login.logIn({
         type:'post',
-        data:{
-          username: "140212199403171823",//指导老师
-          password: "000000",
-          project: "shanghai",
-          imei:123
-        },
+        data:params,
         bindName:'testObj'
       })
     }
