@@ -7,9 +7,11 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+import V from '@/mixins/v'
 
 export default {
   name: 'Home',
+  mixins:[V],
   data(){
     return {
       mgs:'Home'
@@ -19,8 +21,7 @@ export default {
     send(){
       this.msv.user.getUserInfo({
         type:'post',
-        data:{},
-        bindName:''
+        data:{}
       })
     }
   },
