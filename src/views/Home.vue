@@ -1,37 +1,39 @@
 <template>
   <div class="home" @click="send">
-    发送
+    <van-nav-bar
+            title="首页"
+            left-arrow
+            class="back"
+    />
   </div>
+
 </template>
 
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+import V from '@/mixins/v'
 
 export default {
   name: 'Home',
+  mixins:[V],
   data(){
     return {
-      mgs:'Home',
-      testObj:{}
+      mgs:'Home'
     }
   },
   methods:{
     send(){
-      let params = {
-        login: "140212199403171823",//指导老师
-        password: "aaaa1111@",
-        project: "shanghai",
-        imei:123,
-        humanId:3
-      }
-      console.log(this)
+      console.log(this.msv)
 
-      this.msv.login.logIn({
-        type:'post',
-        data:params,
-        bindName:'testObj'
+      this.msv.user.getUserInfo({
+        type:'post'
       })
+      
+      setTimeout(()=>{
+        console.log(this.getUserInfo)
+      },3000)
+      
     }
   },
   components: {

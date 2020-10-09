@@ -49,7 +49,7 @@ server.interceptors.request.use(
         */
         //  根据项目需求确定参数
         config.headers = {
-            accessToken:  store.state.token || '',
+            accessToken:  store.state.user.token || '',
             imei: '',
             project: ''
         }

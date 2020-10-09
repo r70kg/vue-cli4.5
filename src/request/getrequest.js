@@ -69,7 +69,9 @@ myserver.prototype.sendMes = function (moduleName,name,url,config){
      */
    var defaultFn = function(mes){
         console.log(mes)
-        self.nowhandle[bindName] = mes.data;
+        if(mes.data){
+            self.nowhandle[bindName] = mes.data;
+        }
    }
    //  传入数据处理函数，默认使用defaultFn 处理
    var success=  config.success || defaultFn;
