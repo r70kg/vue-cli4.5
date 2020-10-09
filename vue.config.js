@@ -44,6 +44,12 @@ module.exports = {
             .before('postcss-loader') // this makes it work.
             .options({ remUnit: 75, remPrecision: 8 })
             .end()
+
+         config.externals({
+             // 'vue': 'Vue',
+             // 'vuex': 'Vuex',
+             // 'axios': 'axios'
+         })
      },
      lintOnSave:false  // 关闭校验
  };
