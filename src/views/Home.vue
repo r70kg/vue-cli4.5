@@ -17,7 +17,7 @@ export default {
   },
   methods:{
     send(){
-      this.msv.v(this).user.getUserInfo({
+      this.msv.user.getUserInfo({
         type:'post',
         data:{},
         bindName:''
