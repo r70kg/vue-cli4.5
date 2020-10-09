@@ -3,6 +3,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+// 自适应
+import 'lib-flexible'
 // 数据请求
 import myserver from './api/index'
 Vue.prototype.msv = myserver
