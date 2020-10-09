@@ -32,3 +32,8 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+  .home{
+    font-size: 24px;/*px*/
+  }
+</style>
