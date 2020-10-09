@@ -19,8 +19,8 @@ export default {
   methods:{
     send(){
       let params = {
-        username: "140212199403171823",//指导老师
-        password: "000000",
+        login: "140212199403171823",//指导老师
+        password: "aaaa1111@",
         project: "shanghai",
         imei:123,
         humanId:3
