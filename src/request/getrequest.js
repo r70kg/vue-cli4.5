@@ -16,6 +16,8 @@ function myserver(){
  * this.nowhandle == this
  * @returns {myserver}
  */
+// !!! 利用全局混入Mixin绑定 Vue实例
+// 组件中调用    由this.msv.v(this)改为this.msv.模块名.接口名;
 
 myserver.prototype.v = function (ob){
     this.nowhandle = ob;
