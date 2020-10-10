@@ -59,6 +59,10 @@ myserver.prototype.sendMes = function (moduleName,name,url,config){
        // ！！return 后续才能获取到数据
        return mes;
    }
+   // 请求失败
+    var fail = function(err){
+        console.log(err)
+    }
 
     /**
      * @param mes  数据
@@ -83,10 +87,10 @@ myserver.prototype.sendMes = function (moduleName,name,url,config){
    var state = {
        get:function(){
            var urlqs = url + '?' + qs.stringify(data);
-           server.get(urlqs).then(before).then(callback);
+           server.get(urlqs).then(before,fail).then(callback);
        },
        post:function(){
-        server.post(url,data).then(before).then(callback);
+        server.post(url,data).then(before,fail).then(callback);
     }
    }
    // 为每个请求绑定状态标识，防止阻碍并发请求 实现防止重复提交

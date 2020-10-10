@@ -56,9 +56,11 @@
                 this.msv.v(this).login.logIn({
                     type:'post',
                     data:params,
-                    bindName:'testObj',
-                    success:(res)=>{
+                    bindName:'test',
+                    success:(res,defaultFn)=>{
                         console.log(res)
+                        res.data = res.result
+                        defaultFn(res)
                         // 储存token
                         this.changeToken(res.result.token);
                         this.$router.push({
