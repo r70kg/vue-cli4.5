@@ -1,4 +1,4 @@
 export default{
-    logIn:'/userInfomation/sys/loginApp',
+    logIn:'/users',
     loginOut:'/api/loginOut'
 }

@@ -18,7 +18,7 @@
                        left-icon="lock"
                        placeholder="请输入密码"
             />
-            <van-button type="primary loginBtn" @click="login()">登录</van-button>
+            <van-button type="primary loginBtn" @click="login()">登录{{test}}</van-button>
         </van-cell-group>
     </div>
 </template>
@@ -34,7 +34,8 @@
                 password: "aaaa1111@",
                 radio: '2',//中西医
                 status: 0,
-                testObj:{}
+                testObj:{},
+                test:''
             }
         },
         methods:{
@@ -42,15 +43,10 @@
                 'changeToken'
             ]),
             login(){
-                let humanId = getUrlParams('humanId');
-                let imei = getUrlParams('imei');
 
                 let params = {
                     login:this.username,
-                    password:this.password,
-                    imei,
-                    humanId,
-                    project: "shanghai"
+                    password:this.password
                 }
 
                 this.msv.v(this).login.logIn({
@@ -59,13 +55,7 @@
                     bindName:'test',
                     success:(res,defaultFn)=>{
                         console.log(res)
-                        res.data = res.result
                         defaultFn(res)
-                        // 储存token
-                        this.changeToken(res.result.token);
-                        this.$router.push({
-                            path:'/home'
-                        })
                     }
                 });
 
