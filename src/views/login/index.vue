@@ -50,12 +50,16 @@
                 }
 
                 this.msv.v(this).login.logIn({
-                    type:'post',
-                    data:params,
+                    type:'get',
                     bindName:'test',
                     success:(res,defaultFn)=>{
                         console.log(res)
                         defaultFn(res)
+
+                        this.$router.push({
+                            name:'home',
+                            params:{userId:1}
+                        })
                     }
                 });
 
