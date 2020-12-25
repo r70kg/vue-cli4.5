@@ -18,14 +18,28 @@
                        left-icon="lock"
                        placeholder="请输入密码"
             />
-            <van-button type="primary loginBtn" @click="login()">登录{{test}}</van-button>
+            <van-button type="primary loginBtn" @click="login({username,password})">登录</van-button>
+            <br>
+            <van-button type="primary loginBtn" @click="refreshToken()">刷新token</van-button>
+            <br>
+            <van-button type="primary loginBtn" @click="getUserInfo()">用户信息</van-button>
         </van-cell-group>
+
+
+
+        <!--<video-background
+                :src="require('../../assets/girl.mp4')"
+                style="max-height: 400px; height: 100vh;"
+        >
+            <h1 style="color: white;">Hello welcome!</h1>
+        </video-background>-->
     </div>
 </template>
 
 <script type="text/ecmascript-6">
     import {getUrlParams} from '@/utils/index'
-    import {mapState,mapMutations} from 'vuex'
+    import {mapState,mapMutations,mapActions} from 'vuex'
+    import VideoBackground from 'vue-responsive-video-background-player'
 
     export default {
         data() {
@@ -38,32 +52,18 @@
                 test:''
             }
         },
+        components:{
+            VideoBackground
+        },
         methods:{
             ...mapMutations([
                 'changeToken'
             ]),
-            login(){
+            ...mapActions([
+                'login',
+                'refreshToken'
+            ])
 
-                let params = {
-                    login:this.username,
-                    password:this.password
-                }
-
-                this.msv.v(this).login.logIn({
-                    type:'get',
-                    bindName:'test',
-                    success:(res,defaultFn)=>{
-                        console.log(res)
-                        defaultFn(res)
-
-                        this.$router.push({
-                            name:'home',
-                            params:{userId:1}
-                        })
-                    }
-                });
-
-            }
         }
     }
 </script>

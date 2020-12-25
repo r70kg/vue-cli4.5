@@ -35,6 +35,7 @@ Vue.component('chart', ECharts)
 import globalFunction from './global/global'
 // 非生产环境不生产提示信息
 Vue.config.productionTip = process.env !== 'production'
+
 new Vue({
   router,
   store,
