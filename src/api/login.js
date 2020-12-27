@@ -1,6 +1,6 @@
 export default{
     logIn:'/user/login',
-    loginOut:'/api/loginOut',
+    logOut:'/user/logout',
     register:'/user/register',
     refreshToken:'/user/refreshtoken',
 }

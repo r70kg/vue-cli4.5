@@ -16,48 +16,54 @@ const state = {
 }
 
 const actions = {
-    // 登陆
-    login({commit}, userInfo) {
-
-        msv.login.logIn({
+    // 注册
+    register({commit},userInfo) {
+        msv.login.register({
             type: 'post',
             data: userInfo,
-            success: (res, defaultFn) => {
-
-                commit('SET_USERINIFO', res.data.userInfo);
-                commit('SET_ACCESS_TOKEN', res.data.access_token);
-                commit('SET_REFRESH_TOKEN', res.data.refresh_token);
-                // localStorage.setItem('access_token',res.data.access_token)
-                // localStorage.setItem('refresh_token',res.data.refresh_token)
-                defaultFn(res)
-
-                /*this.$router.push({
-                    name:'home',
-                    params:{userId:1}
-                })*/
+            success: ({code, msg}) => {
+                if (code) {
+                    alert(msg)
+                }
             }
         });
     },
-    // 刷新token
-    refreshToken({commit, state}) {
+    // 登陆
+    login({commit}, userInfo) {
 
-        let refreshToken = state.refresh_token;
-
-        return new Promise((resolve, reject) => {
-            msv.login.refreshToken({
+        return new Promise((resolve) => {
+            msv.login.logIn({
                 type: 'post',
-                data: {
-                    refreshToken: refreshToken
-                },
-                success: (res, defaultFn) => {
+                data: userInfo,
+                success: (res) => {
+                    resolve(res)
+                    commit('SET_USERINIFO', res.data.userInfo);
                     commit('SET_ACCESS_TOKEN', res.data.access_token);
                     commit('SET_REFRESH_TOKEN', res.data.refresh_token);
-                    resolve(res)
-                    // localStorage.setItem('access_token',res.data.access_token)
-                    // localStorage.setItem('refresh_token',res.data.refresh_token)
                 }
-            })
+            });
         })
+
+    },
+    // 退出
+    logout({commit}) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                    commit('SET_ACCESS_TOKEN', '');
+                    commit('SET_REFRESH_TOKEN', '');
+                }, 0
+            )
+            resolve();
+        })
+
+        /*msv.login.refreshToken({
+            type: 'post',
+            data: {},
+            success: () => {
+                commit('SET_ACCESS_TOKEN', '');
+                commit('SET_REFRESH_TOKEN', '');
+            }
+        })*/
     },
     // 清空token
     resetToken({commit}) {
@@ -65,11 +71,11 @@ const actions = {
         commit('SET_REFRESH_TOKEN', '');
     },
     // 用户信息
-    getUserInfo({commit}, userId) {
+    getUserInfo({commit, state}) {
         msv.user.userInfo({
             type: 'post',
             data: {
-                userId
+                userId: state.userInfo.userId
             },
             success: (res) => {
                 commit('SET_USERINIFO', res.data.userInfo);

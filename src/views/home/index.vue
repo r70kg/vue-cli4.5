@@ -1,14 +1,15 @@
 <template>
-    <div class="home" @click="send">
+    <div class="home">
         <van-nav-bar
                 title="首页"
                 left-arrow
                 class="back"
+                @click.native="back"
         />
-
-        <div @click="getIndexFn">=====</div>
+        <van-button type="primary loginBtn" @click="settingFn()">设置</van-button>
+        <div @click="getIndexFn">数据获取</div>
         <div>
-            {{mgs}}
+<!--            {{mgs}}-->
             <v-chart class="vueTop" :options="polar" ref="echarts1"></v-chart>
         </div>
     </div>
@@ -26,7 +27,6 @@
         name: 'Home',
         mixins: [V],
         components: {
-            HelloWorld,
             'v-chart': ECharts
         },
         data() {
@@ -34,25 +34,20 @@
                 mgs:'',
                 polar: {}
             }
-
         },
         methods: {
-            send() {
-                /*console.log(this.msv)
-
-                this.msv.user.getUserInfo({
-                    type: 'post'
-                })
-
-                setTimeout(() => {
-                    console.log(this.getUserInfo)
-                }, 3000)*/
+            back() {
+                this.$router.go(-1)
+            },
+            settingFn(){
+              this.$router.push({
+                  name:'setting'
+              })
             },
             getIndexFn() {
                 let that = this;
 
                 if (window.WebSocket) {
-                    console.log("支持");
                 } else {
                     console.log("不支持");
                 }
@@ -67,8 +62,7 @@
 
                 ws.onmessage = function (evt) {
 
-                    console.log(evt.data)
-                    console.log(that)
+                    // console.log(evt.data)
                     that.mgs = evt.data
 
                     that.drawchart(evt.data);
@@ -91,7 +85,7 @@
                 data = JSON.parse(data)
 
 
-                console.log(data)
+                // console.log(data)
 
 
                 let _option = {
