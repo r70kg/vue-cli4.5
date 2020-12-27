@@ -90,10 +90,13 @@ server.interceptors.response.use(
                     resolve(server.request(options))
                 })
 
+
+
+
                 // 无感刷新Token
                 if (!isRefreshing) {
                     isRefreshing = true
-                    store.dispatch('refreshToken').then((res2) => {
+                    store.dispatch('refreshToken').then(() => {
                         const newToken = store.state.user.access_token;
                         onAccessTokenFetched(newToken)
 
@@ -105,6 +108,7 @@ server.interceptors.response.use(
                             location.reload()
                         })
                     }).finally(() => {
+                        console.log('finally')
                         isRefreshing = false
                     })
                 }
