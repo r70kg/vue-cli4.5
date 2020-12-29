@@ -3,4 +3,5 @@ export default{
     logOut:'/user/logout',
     register:'/user/register',
     refreshToken:'/user/refreshtoken',
+    updatePassword:'/user/updatePassword'
 }

@@ -22,9 +22,7 @@ const actions = {
             type: 'post',
             data: userInfo,
             success: ({code, msg}) => {
-                if (code) {
-                    alert(msg)
-                }
+                alert(msg)
             }
         });
     },
@@ -55,15 +53,25 @@ const actions = {
             )
             resolve();
         })
+    },
+    // 刷新token
+    refreshToken({commit, state}) {
 
-        /*msv.login.refreshToken({
-            type: 'post',
-            data: {},
-            success: () => {
-                commit('SET_ACCESS_TOKEN', '');
-                commit('SET_REFRESH_TOKEN', '');
-            }
-        })*/
+        let refreshToken = state.refresh_token;
+
+        return new Promise((resolve, reject) => {
+            msv.login.refreshToken({
+                type: 'post',
+                data: {
+                    refreshToken: refreshToken
+                },
+                success: (res) => {
+                    commit('SET_ACCESS_TOKEN', res.data.access_token);
+                    commit('SET_REFRESH_TOKEN', res.data.refresh_token);
+                    resolve(res)
+                }
+            })
+        })
     },
     // 清空token
     resetToken({commit}) {
@@ -81,6 +89,18 @@ const actions = {
                 commit('SET_USERINIFO', res.data.userInfo);
             }
         });
+    },
+    // 更新密码
+    updatePassword({commit, state},payload) {
+        return new Promise((resolve)=>{
+            msv.login.updatePassword({
+                type: 'post',
+                data: payload,
+                success: (res) => {
+                    resolve(res)
+                }
+            });
+        })
     }
 }
 

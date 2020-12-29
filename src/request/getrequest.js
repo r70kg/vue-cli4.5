@@ -81,8 +81,14 @@ myserver.prototype.sendMes = function (moduleName, name, url, config) {
     }
     //  传入数据处理函数，默认使用defaultFn 处理
     var success = config.success || defaultFn;
+
+    // 统一处理错误
     var callback = function (res) {
-        success(res, defaultFn);
+        if(res.code){
+            success(res, defaultFn);
+        }else{
+            alert(res.msg)
+        }
     }
 
     // 请求调用
