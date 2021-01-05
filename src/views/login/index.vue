@@ -20,6 +20,7 @@
             />
             <van-button type="primary loginBtn" @click="loginFn(userInfo)">登录</van-button>
             <van-button type="primary loginBtn" @click="register(userInfo)">注册</van-button>
+            <van-button type="primary loginBtn" @click="test()">测试</van-button>
         </van-cell-group>
 
 
@@ -60,6 +61,14 @@
                         name: 'home'
                     })
                 }
+            },
+            
+            
+            test(){
+                import('../../utils').then((res) => {
+                        console.log(res)
+                    }
+                )
             }
         }
     }

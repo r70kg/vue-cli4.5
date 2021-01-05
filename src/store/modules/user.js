@@ -66,9 +66,11 @@ const actions = {
                     refreshToken: refreshToken
                 },
                 success: (res) => {
-                    commit('SET_ACCESS_TOKEN', res.data.access_token);
-                    commit('SET_REFRESH_TOKEN', res.data.refresh_token);
                     resolve(res)
+                    if(res.code===1){
+                        commit('SET_ACCESS_TOKEN', res.data.access_token);
+                        commit('SET_REFRESH_TOKEN', res.data.refresh_token);
+                    }
                 }
             })
         })
@@ -86,6 +88,8 @@ const actions = {
                 userId: state.userInfo.userId
             },
             success: (res) => {
+                console.log(res)
+
                 commit('SET_USERINIFO', res.data.userInfo);
             }
         });

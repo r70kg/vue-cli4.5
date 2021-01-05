@@ -49,7 +49,8 @@
             ...mapActions([
                 'logout',
                 'resetToken',
-                'updatePassword'
+                'updatePassword',
+                'getUserInfo'
             ]),
             logoutFn() {
                 this.logout().then(() => {
@@ -63,11 +64,13 @@
                 let {username, oldPassword, newPassword, aginPassword} = this;
                 this.updatePassword({username, oldPassword, newPassword, aginPassword})
                     .then((res)=>{
-                        this.resetToken();
+                        /*this.resetToken();
                         this.$router.push({
                             name:'login'
-                        })
+                        })*/
                     })
+
+                this.getUserInfo();
             }
         },
         computed:{

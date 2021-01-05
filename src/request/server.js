@@ -4,6 +4,7 @@
  */
 import axios from 'axios';
 import store from '@/store';
+import router from '@/router';
 
 
 // 请求基本配置
@@ -96,17 +97,27 @@ server.interceptors.response.use(
                 // 无感刷新Token
                 if (!isRefreshing) {
                     isRefreshing = true
-                    store.dispatch('refreshToken').then(() => {
-                        const newToken = store.state.user.access_token;
-                        onAccessTokenFetched(newToken)
+                    store.dispatch('refreshToken').then((res) => {
+                        console.log(9999)
+                        console.log(res)
+                        if(res.code===4001){
+                            // 清空缓存接口
+                            callbacks = [];
+
+                            store.dispatch('resetToken');
+                            router.push({
+                                path:'./'
+                            })
+                        }else{
+                            const newToken = store.state.user.access_token;
+                            onAccessTokenFetched(newToken)
+                        }
+
 
                     }).catch((err) => {
                         // 跳转到登录页面并清空 token
                         alert(err.message || 'Error')
 
-                        store.dispatch('resetToken').then(() => {
-                            location.reload()
-                        })
                     }).finally(() => {
                         console.log('finally')
                         isRefreshing = false
@@ -114,7 +125,8 @@ server.interceptors.response.use(
                 }
             })
             // 将token过期期间请求的接口包装成promise返回，等待刷新token后重新请求
-            return retryOriginalRequest
+            // return retryOriginalRequest
+            return res
         } else {
             return res || 'Error'
         }

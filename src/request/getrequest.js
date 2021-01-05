@@ -55,14 +55,12 @@ myserver.prototype.sendMes = function (moduleName, name, url, config) {
     // 响应数据处理前==处理==响应数据处理后
     var before = function (mes) {
         console.log(mes)
-        self[moduleName][name].state = 'ready';
         // ！！return 后续才能获取到数据
         return mes;
     }
     // 请求失败
     var fail = function (err) {
         console.log(err)
-        self[moduleName][name].state = 'ready';
         return err;
     }
 
@@ -84,10 +82,12 @@ myserver.prototype.sendMes = function (moduleName, name, url, config) {
 
     // 统一处理错误
     var callback = function (res) {
-        if(res.code){
+
+        self[moduleName][name].state = 'ready';
+        if(res.code==1||res.code===4001){
             success(res, defaultFn);
         }else{
-            alert(res.msg)
+            console.log(res.msg)
         }
     }
 
@@ -102,6 +102,7 @@ myserver.prototype.sendMes = function (moduleName, name, url, config) {
         }
     }
     // 为每个请求绑定状态标识，防止阻碍并发请求 实现防止重复提交
+    console.log(self[moduleName][name].state)
     if (self[moduleName][name].state == 'ready') {
         self[moduleName][name].state = 'pending'
         state[type]();
