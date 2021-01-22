@@ -2,7 +2,8 @@
  * Created by Dell on 2020/9/24.
  */
 const devProxy = [
-    '/user'
+    '/user',
+    '/wx'
 ] // 代理
 
 let target = process.env.VUE_APP_BASE_API;
@@ -32,6 +33,7 @@ console.log(proxyObj)
 module.exports = {
      devServer: {
          proxy: proxyObj,  // 配置代理
+         disableHostCheck: true  // 跳过主机检查
      },
      chainWebpack: config => {
         config.module

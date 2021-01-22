@@ -1,5 +1,6 @@
 import server from "./server.js";
 import qs from "qs";
+import {Toast} from 'vant';
 
 
 /**
@@ -87,6 +88,8 @@ myserver.prototype.sendMes = function (moduleName, name, url, config) {
         if(res.code==1||res.code===4001){
             success(res, defaultFn);
         }else{
+            Toast(res.msg);
+
             console.log(res.msg)
         }
     }

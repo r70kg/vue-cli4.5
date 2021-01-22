@@ -1,9 +1,10 @@
 <template>
     <div>
         <van-nav-bar
-                title="设置"
+                title="首页"
                 left-arrow
                 class="back"
+                @click.native="back"
         />
 
 
@@ -71,6 +72,9 @@
                     })
 
                 this.getUserInfo();
+            },
+            back(){
+                this.$router.go(-1);
             }
         },
         computed:{

@@ -41,7 +41,7 @@
             return {
                 userInfo: {
                     username: "140212199403171823",
-                    password: "aaaa",
+                    password: "000000",
                 }
             }
         },
@@ -62,13 +62,13 @@
                     })
                 }
             },
-            
-            
             test(){
-                import('../../utils').then((res) => {
-                        console.log(res)
+                this.msv.wechart.wxToken({
+                    type: 'get',
+                    success: ({code, msg}) => {
+                        alert(msg)
                     }
-                )
+                });
             }
         }
     }

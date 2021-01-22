@@ -11,7 +11,7 @@ import router from '@/router';
 let config = {
     baseUrl: process.env.VUE_APP_BASE_API,
     withCredentials: true, // send cookies when cross-domain requests
-    timeout: 5000
+    timeout: 50000
 }
 
 const server = axios.create(config);
