@@ -5,5 +5,6 @@
  * @desc:wx
  */
  export default {
-      'wxToken':'/wx/wechat/verify'
+      'wxToken':'/wx/wechat/verify',
+      'wxRedirect':'wx/redirect',
  }

@@ -12,6 +12,21 @@
   export default {
     name:'App',
     created(){
+      this.wxRedirect();
+    },
+    methods:{
+      wxRedirect(){
+        this.msv.wechart.wxRedirect({
+          type: 'get',
+          data:{
+              url:'http://82.156.63.111/',
+              scope:'snsapi_userinfo'
+          },
+          success: (res) => {
+            console.log(res);
+          }
+        });
+      }
     }
   }
 </script>
