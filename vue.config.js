@@ -18,6 +18,8 @@ devProxy.forEach((value) => {
 
         target: target,
 
+        ws:false,
+
         changeOrigin: true,
 
         pathRewrite: {
@@ -32,6 +34,8 @@ console.log(proxyObj)
 
 module.exports = {
      devServer: {
+         host:'m.imooc.com',
+         port:81,
          proxy: proxyObj,  // 配置代理
          disableHostCheck: true  // 跳过主机检查
      },

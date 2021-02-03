@@ -7,4 +7,5 @@
  export default {
       'wxToken':'/wx/wechat/verify',
       'wxRedirect':'wx/redirect',
+      'wxgetOpenId':'wx/getOpenId'
  }

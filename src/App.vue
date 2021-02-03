@@ -12,17 +12,27 @@
   export default {
     name:'App',
     created(){
-      this.wxRedirect();
+      let openId = '';
+      if(!openId){
+        this.wxRedirect();
+      }
+
     },
+
+    // https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx815629929dadc0fd&redirect_uri=http://localhost:8080/wx/getOpenId&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
     methods:{
       wxRedirect(){
         this.msv.wechart.wxRedirect({
           type: 'get',
           data:{
-              url:'http://82.156.63.111/',
+              url:'http%3a%2f%2fm.imooc.com%3a81',
               scope:'snsapi_userinfo'
           },
           success: (res) => {
+            if(res.code==1){
+              window.location.href = res.data.authorizeUrl;
+
+            }
             console.log(res);
           }
         });
