@@ -3,6 +3,7 @@
     <div id="nav">
       <!--<router-link to="/">Home</router-link> |-->
       <!--<router-link to="/about">About</router-link>-->
+      <van-button type="primary loginBtn" @click="auth()">999</van-button>
     </div>
     <router-view/>
   </div>
@@ -12,15 +13,18 @@
   export default {
     name:'App',
     created(){
-      let openId = '';
-      if(!openId){
-        this.wxRedirect();
-      }
+
 
     },
 
     // https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx815629929dadc0fd&redirect_uri=http://localhost:8080/wx/getOpenId&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
     methods:{
+      auth(){
+        let openId = '';
+        if(!openId){
+          this.wxRedirect();
+        }
+      },
       wxRedirect(){
         this.msv.wechart.wxRedirect({
           type: 'get',
